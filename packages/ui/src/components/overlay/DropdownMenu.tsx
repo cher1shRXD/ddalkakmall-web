@@ -57,7 +57,7 @@ export const DropdownMenu = ({ items, trigger, placement = 'bottom-start' }: Dro
 
   return (
     <>
-      {cloneElement(trigger, { ref: triggerRef, onClick: handleOpen })}
+      {cloneElement(trigger as React.ReactElement<any>, { ref: triggerRef, onClick: handleOpen })}
       <Portal>
         <AnimatePresence>
           {open && (

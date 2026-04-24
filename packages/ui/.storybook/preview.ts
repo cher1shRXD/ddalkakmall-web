@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react-vite'
+import '../src/styles/tokens.css';
 import React from 'react';
 import { UIProvider } from '../src/provider/UIProvider';
 import { colors } from '../src/tokens/colors';

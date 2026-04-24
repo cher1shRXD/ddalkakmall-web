@@ -81,7 +81,7 @@ export const Popover = ({ content, placement = 'bottom', children, trigger = 'cl
 
   return (
     <>
-      {cloneElement(children, {
+      {cloneElement(children as React.ReactElement<any>, {
         ref: triggerRef,
         onClick: handleTriggerClick,
         onMouseEnter: handleMouseEnter,

@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@import "@ddalkakmall/ui/styles/tokens.css";
+
+@theme inline {
+  /* backgrounds */
+  --color-background: var(--background);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-surface-4: var(--surface-4);
+
+  /* borders */
+  --color-border: var(--border);
+  --color-border-sub: var(--border-sub);
+  --color-border-focus: var(--border-focus);
+
+  /* primary */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-muted: var(--primary-muted);
+
+  /* semantic */
+  --color-success: var(--success);
+  --color-success-muted: var(--success-muted);
+  --color-warning: var(--warning);
+  --color-warning-muted: var(--warning-muted);
+  --color-danger: var(--danger);
+  --color-danger-muted: var(--danger-muted);
+  --color-info: var(--info);
+  --color-info-muted: var(--info-muted);
+
+  /* text */
+  --color-foreground: var(--foreground);
+  --color-foreground-sub: var(--foreground-sub);
+  --color-foreground-dim: var(--foreground-dim);
+  --color-foreground-inverse: var(--foreground-inverse);
+
+  /* misc */
+  --color-overlay: var(--overlay);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}

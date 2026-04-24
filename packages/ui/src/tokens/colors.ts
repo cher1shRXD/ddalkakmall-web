@@ -1,52 +1,52 @@
 export const colors = {
-  background: '#0a0a0a',
+  background: 'var(--background)',
 
   surface: {
-    1: '#111111',
-    2: '#191919',
-    3: '#222222',
-    4: '#2c2c2c',
+    1: 'var(--surface-1)',
+    2: 'var(--surface-2)',
+    3: 'var(--surface-3)',
+    4: 'var(--surface-4)',
   },
 
   border: {
-    DEFAULT: '#2a2a2a',
-    sub: '#1a1a1a',
-    focus: 'rgba(255, 255, 255, 0.45)',
+    DEFAULT: 'var(--border)',
+    sub: 'var(--border-sub)',
+    focus: 'var(--border-focus)',
   },
 
   primary: {
-    DEFAULT: '#ffffff',
-    hover: '#e8e8e8',
-    active: '#d0d0d0',
-    muted: 'rgba(255, 255, 255, 0.08)',
+    DEFAULT: 'var(--primary)',
+    hover: 'var(--primary-hover)',
+    active: 'var(--primary-active)',
+    muted: 'var(--primary-muted)',
   },
 
   success: {
-    DEFAULT: '#34c98a',
-    muted: 'rgba(52, 201, 138, 0.12)',
+    DEFAULT: 'var(--success)',
+    muted: 'var(--success-muted)',
   },
 
   warning: {
-    DEFAULT: '#f5a623',
-    muted: 'rgba(245, 166, 35, 0.12)',
+    DEFAULT: 'var(--warning)',
+    muted: 'var(--warning-muted)',
   },
 
   danger: {
-    DEFAULT: '#f25f5c',
-    muted: 'rgba(242, 95, 92, 0.12)',
+    DEFAULT: 'var(--danger)',
+    muted: 'var(--danger-muted)',
   },
 
   info: {
-    DEFAULT: '#4da8f7',
-    muted: 'rgba(77, 168, 247, 0.12)',
+    DEFAULT: 'var(--info)',
+    muted: 'var(--info-muted)',
   },
 
   text: {
-    DEFAULT: '#f0f0f0',
-    sub: '#808080',
-    dim: '#484848',
-    inverse: '#0a0a0a',
+    DEFAULT: 'var(--foreground)',
+    sub: 'var(--foreground-sub)',
+    dim: 'var(--foreground-dim)',
+    inverse: 'var(--foreground-inverse)',
   },
 
-  overlay: 'rgba(0, 0, 0, 0.85)',
+  overlay: 'var(--overlay)',
 } as const;
