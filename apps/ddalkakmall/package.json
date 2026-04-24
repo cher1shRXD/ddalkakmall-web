@@ -9,10 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@cher1shrxd/loading": "^1.0.3",
+    "@ddalkakmall/ui": "workspace:*",
+    "lucide-react": "^1.9.0",
     "next": "16.2.4",
     "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "@ddalkakmall/ui": "workspace:*"
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
