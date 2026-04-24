@@ -6,4 +6,4 @@ export default {
   component: Textarea,
 };
 
-export const Basic = () => <Textarea placeholder="Type something..." />;
+export const Basic = () => <Textarea placeholder="입력해 주세요..." />;

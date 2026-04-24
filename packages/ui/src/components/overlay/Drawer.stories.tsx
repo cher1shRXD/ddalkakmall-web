@@ -11,9 +11,9 @@ export const Basic = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Button onClick={() => setOpen(true)}>Open Drawer</Button>
-      <Drawer open={open} onClose={() => setOpen(false)} title="Drawer Title">
-        Content
+      <Button onClick={() => setOpen(true)}>드로어 열기</Button>
+      <Drawer open={open} onClose={() => setOpen(false)} title="드로어 제목">
+        내용
       </Drawer>
     </>
   );

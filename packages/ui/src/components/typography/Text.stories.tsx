@@ -6,13 +6,13 @@ export default {
   component: Text,
 };
 
-export const Basic = () => <Text>This is a text component.</Text>;
+export const Basic = () => <Text>텍스트 컴포넌트입니다.</Text>;
 export const Sizes = () => (
   <div>
-    <Text size="xs">Extra Small</Text>
-    <Text size="sm">Small</Text>
-    <Text size="md">Medium</Text>
-    <Text size="lg">Large</Text>
-    <Text size="xl">Extra Large</Text>
+    <Text size="xs">아주 작음</Text>
+    <Text size="sm">작음</Text>
+    <Text size="md">중간</Text>
+    <Text size="lg">큼</Text>
+    <Text size="xl">아주 큼</Text>
   </div>
 );

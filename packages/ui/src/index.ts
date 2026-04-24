@@ -48,8 +48,6 @@ export { Drawer } from './components/overlay/Drawer';
 export type { DrawerProps, DrawerPlacement } from './components/overlay/Drawer';
 
 // Overlay
-export { Tooltip } from './components/overlay/Tooltip';
-export type { TooltipProps, TooltipPlacement } from './components/overlay/Tooltip';
 export { Popover } from './components/overlay/Popover';
 export type { PopoverProps, PopoverPlacement } from './components/overlay/Popover';
 export { Menu } from './components/overlay/Menu';

@@ -8,7 +8,7 @@ export default {
 };
 
 export const Basic = () => (
-  <ModalItem id="test" title="Modal Title" onClose={() => {}}>
-    Modal Content
+  <ModalItem id="test" title="모달 제목" onClose={() => {}}>
+    모달 내용
   </ModalItem>
 );

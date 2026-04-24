@@ -7,11 +7,11 @@ export default {
 };
 
 const options = [
-  { label: 'Option 1', value: '1' },
-  { label: 'Option 2', value: '2' },
+  { label: '옵션 1', value: '1' },
+  { label: '옵션 2', value: '2' },
 ];
 
 export const Basic = () => {
   const [value, setValue] = useState('');
-  return <Select options={options} value={value} onChange={setValue} placeholder="Select an option" />;
+  return <Select options={options} value={value} onChange={setValue} placeholder="옵션 선택" />;
 };

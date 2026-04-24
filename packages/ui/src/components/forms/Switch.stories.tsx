@@ -8,5 +8,5 @@ export default {
 
 export const Basic = () => {
   const [checked, setChecked] = useState(false);
-  return <Switch checked={checked} onChange={setChecked} label="Switch label" />;
+  return <Switch checked={checked} onChange={setChecked} label="스위치 레이블" />;
 };

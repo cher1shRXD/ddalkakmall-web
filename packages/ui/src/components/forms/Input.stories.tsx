@@ -6,4 +6,4 @@ export default {
   component: Input,
 };
 
-export const Basic = () => <Input placeholder="Type something..." />;
+export const Basic = () => <Input placeholder="입력해 주세요..." />;

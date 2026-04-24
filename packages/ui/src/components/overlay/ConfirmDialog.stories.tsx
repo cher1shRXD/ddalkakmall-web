@@ -8,7 +8,7 @@ export default {
 
 export const Basic = () => (
   <ConfirmDialogItem 
-    title="Confirm Dialog" 
-    message="Are you sure you want to proceed?" 
+    title="확인"
+    message="계속 진행하시겠습니까?"
   />
 );

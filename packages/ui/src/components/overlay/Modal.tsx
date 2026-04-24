@@ -8,10 +8,13 @@ import { typography } from '../../tokens/typography';
 import { radius } from '../../tokens/radius';
 import { zIndex } from '../../tokens/zIndex';
 import { modalStore, type ModalConfig } from '../../store/modal';
+import { useIsMobile } from '../../utils/useIsMobile';
 
 const sizeWidths = { sm: 400, md: 520, lg: 680, xl: 860, full: '100%' };
 
 export const ModalItem = ({ id, content, title, size = 'md', closable = true, stackIndex }: ModalConfig & { stackIndex: number }) => {
+  const isMobile = useIsMobile();
+  const p = isMobile ? 8 : 16;
   const baseZ = zIndex.modal + stackIndex * 10;
   const width = sizeWidths[size];
 
@@ -54,7 +57,7 @@ export const ModalItem = ({ id, content, title, size = 'md', closable = true, st
           transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
           {(title || closable) && (
-            <div style={styles.header}>
+            <div style={{ ...styles.header, padding: `14px ${p}px` }}>
               {title && <span style={styles.title}>{title}</span>}
               {closable && (
                 <motion.button
@@ -70,7 +73,7 @@ export const ModalItem = ({ id, content, title, size = 'md', closable = true, st
               )}
             </div>
           )}
-          <div style={styles.body}>{content}</div>
+          <div style={{ ...styles.body, padding: p }}>{content}</div>
         </motion.div>
       </motion.div>
     </>

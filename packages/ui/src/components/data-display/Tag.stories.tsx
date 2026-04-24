@@ -6,12 +6,12 @@ export default {
   component: Tag,
 };
 
-export const Basic = () => <Tag>Tag Label</Tag>;
+export const Basic = () => <Tag>태그 레이블</Tag>;
 export const Variants = () => (
   <div style={{ display: 'flex', gap: 10 }}>
-    <Tag variant="primary">Primary</Tag>
-    <Tag variant="success">Success</Tag>
-    <Tag variant="warning">Warning</Tag>
-    <Tag variant="danger">Danger</Tag>
+    <Tag variant="primary">기본</Tag>
+    <Tag variant="success">성공</Tag>
+    <Tag variant="warning">경고</Tag>
+    <Tag variant="danger">위험</Tag>
   </div>
 );

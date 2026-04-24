@@ -7,6 +7,7 @@ import { typography } from '../../tokens/typography';
 import { radius } from '../../tokens/radius';
 import { zIndex } from '../../tokens/zIndex';
 import { dialogStore, type DialogConfig } from '../../store/dialog';
+import { useIsMobile } from '../../utils/useIsMobile';
 
 const variantColor: Record<string, string> = {
   info:    colors.info.DEFAULT,
@@ -23,6 +24,8 @@ const variantIcon: Record<string, React.ReactNode> = {
 };
 
 export const AlertDialogItem = ({ message, title, variant = 'info', confirmLabel = '확인' }: Omit<DialogConfig, 'id' | 'type' | 'resolve' | 'cancelLabel'>) => {
+  const isMobile = useIsMobile();
+  const p = isMobile ? 8 : 16;
   const accentColor = variantColor[variant];
 
   return (
@@ -34,11 +37,11 @@ export const AlertDialogItem = ({ message, title, variant = 'info', confirmLabel
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
       />
-      <motion.div style={{ ...styles.positioner, zIndex: zIndex.dialog }}>
+      <motion.div style={{ ...styles.positioner, padding: p, zIndex: zIndex.dialog }}>
         <motion.div
           role="alertdialog"
           aria-modal="true"
-          style={styles.dialog}
+          style={{ ...styles.dialog, maxWidth: `calc(100vw - ${p * 2}px)`, padding: `${p + 12}px ${p}px ${p}px` }}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}

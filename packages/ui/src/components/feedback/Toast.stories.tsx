@@ -9,7 +9,7 @@ export default {
 export const Basic = () => (
   <ToastItem 
     id="1" 
-    message="This is a toast message" 
+    message="토스트 메시지입니다"
     type='success'
     duration={3000}
   />

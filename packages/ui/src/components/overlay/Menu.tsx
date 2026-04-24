@@ -21,7 +21,7 @@ export interface MenuProps {
 }
 
 export const Menu = ({ items, style }: MenuProps) => {
-  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <div style={{ ...styles.menu, ...style }} role="menu">
@@ -29,10 +29,10 @@ export const Menu = ({ items, style }: MenuProps) => {
         if (item.separator) {
           return <div key={`sep-${i}`} style={styles.separator} role="separator" />;
         }
-        const isHovered = hoveredKey === item.key && !item.disabled;
+        const isHovered = hoveredIndex === i && !item.disabled;
         return (
           <button
-            key={item.key}
+            key={item.key ?? i}
             type="button"
             role="menuitem"
             disabled={item.disabled}
@@ -44,8 +44,8 @@ export const Menu = ({ items, style }: MenuProps) => {
                 ? (item.danger ? colors.danger.muted : colors.surface[3])
                 : 'none',
             }}
-            onMouseEnter={() => !item.disabled && setHoveredKey(item.key)}
-            onMouseLeave={() => setHoveredKey(null)}
+            onMouseEnter={() => !item.disabled && setHoveredIndex(i)}
+            onMouseLeave={() => setHoveredIndex(null)}
             onClick={() => { item.onClick?.(); }}
           >
             {item.icon && <span style={styles.icon}>{item.icon}</span>}

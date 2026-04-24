@@ -11,9 +11,9 @@ export const Basic = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Button onClick={() => setOpen(true)}>Open BottomSheet</Button>
-      <BottomSheet open={open} onClose={() => setOpen(false)} title="Bottom Sheet">
-        <div style={{ padding: 20 }}>Content</div>
+      <Button onClick={() => setOpen(true)}>바텀시트 열기</Button>
+      <BottomSheet open={open} onClose={() => setOpen(false)} title="바텀시트">
+        <div>내용</div>
       </BottomSheet>
     </>
   );

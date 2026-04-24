@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { X } from 'lucide-react';
 import { colors } from '../../tokens/colors';
@@ -45,6 +45,16 @@ const drawerBorderRadius: Record<DrawerPlacement, string> = {
 
 export const Drawer = ({ open, onClose, placement = 'right', title, width = 320, height = 320, closable = true, children }: DrawerProps) => {
   const isHorizontal = placement === 'left' || placement === 'right';
+  const [vw, setVw] = useState(() => typeof window !== 'undefined' ? window.innerWidth : Infinity);
+
+  useEffect(() => {
+    const handler = () => setVw(window.innerWidth);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+
+  const fillsViewport = isHorizontal && typeof width === 'number' && vw <= width;
+  const borderRadius = fillsViewport ? 0 : drawerBorderRadius[placement];
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape' && closable) onClose(); };
@@ -77,8 +87,8 @@ export const Drawer = ({ open, onClose, placement = 'right', title, width = 320,
               style={{
                 ...styles.drawer,
                 ...drawerPositionStyle[placement],
-                ...(isHorizontal ? { width } : { height }),
-                borderRadius: drawerBorderRadius[placement],
+                ...(isHorizontal ? { width, maxWidth: '100vw' } : { height, maxHeight: '100vh' }),
+                borderRadius,
                 zIndex: zIndex.drawer,
               }}
               variants={slideVariants[placement]}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { colors } from '../../tokens/colors';
 import { typography } from '../../tokens/typography';
@@ -18,6 +18,7 @@ export interface BottomSheetProps {
 
 export const BottomSheet = ({ open, onClose, title, children, snapHeight = '60vh' }: BottomSheetProps) => {
   const controls = useDragControls();
+  const sheetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (open) document.body.style.overflow = 'hidden';
@@ -39,6 +40,7 @@ export const BottomSheet = ({ open, onClose, title, children, snapHeight = '60vh
               onClick={onClose}
             />
             <motion.div
+              ref={sheetRef}
               style={{ ...styles.sheet, maxHeight: snapHeight, zIndex: zIndex.dropdown + 2 }}
               initial={{ y: '100%' }}
               animate={{ y: 0 }}
@@ -47,9 +49,12 @@ export const BottomSheet = ({ open, onClose, title, children, snapHeight = '60vh
               drag="y"
               dragControls={controls}
               dragConstraints={{ top: 0 }}
-              dragElastic={{ top: 0.05, bottom: 0.5 }}
+              dragElastic={{ top: 0.05, bottom: 0.2 }}
+              dragSnapToOrigin
+              dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
               onDragEnd={(_, info) => {
-                if (info.offset.y > 80 || info.velocity.y > 400) onClose();
+                const height = sheetRef.current?.offsetHeight ?? 300;
+                if (info.offset.y > height * 0.4 || info.velocity.y > 500) onClose();
               }}
             >
               <div
@@ -101,7 +106,7 @@ const styles: Record<string, React.CSSProperties> = {
     background: colors.border.DEFAULT,
   },
   titleBar: {
-    padding: '8px 20px 12px',
+    padding: '8px 16px 12px',
     borderBottom: `1px solid ${colors.border.sub}`,
     flexShrink: 0,
   },
@@ -114,6 +119,6 @@ const styles: Record<string, React.CSSProperties> = {
   content: {
     overflowY: 'auto',
     flex: 1,
-    padding: 20,
+    padding: 16,
   },
 };

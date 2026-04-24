@@ -10,8 +10,8 @@ export const Basic = () => {
   const [value, setValue] = useState('1');
   return (
     <RadioGroup value={value} onChange={setValue}>
-      <Radio value="1" label="Option 1" />
-      <Radio value="2" label="Option 2" />
+      <Radio value="1" label="옵션 1" />
+      <Radio value="2" label="옵션 2" />
     </RadioGroup>
   );
 };

@@ -8,5 +8,5 @@ export default {
 
 export const Basic = () => {
   const [checked, setChecked] = useState(false);
-  return <Checkbox checked={checked} onChange={setChecked} label="Check me" />;
+  return <Checkbox checked={checked} onChange={setChecked} label="선택해 주세요" />;
 };

@@ -8,7 +8,7 @@ export default {
 
 export const Basic = () => (
   <AlertDialogItem 
-    title="Alert Dialog" 
-    message="This is an alert dialog message." 
+    title="알림"
+    message="알림 메시지입니다."
   />
 );

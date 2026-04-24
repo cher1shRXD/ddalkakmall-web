@@ -8,10 +8,10 @@ export default {
 };
 
 const items = [
-  { key: "Action1", label: 'Action 1', onClick: () => {} },
-  { key: "Action2", label: 'Action 2', onClick: () => {} },
+  { key: "Action1", label: '동작 1', onClick: () => {} },
+  { key: "Action2", label: '동작 2', onClick: () => {} },
 ];
 
 export const Basic = () => (
-  <DropdownMenu items={items} trigger={<Button>Open Menu</Button>} />
+  <DropdownMenu items={items} trigger={<Button>메뉴 열기</Button>} />
 );
