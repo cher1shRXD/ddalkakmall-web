@@ -1,4 +1,4 @@
-import Sidebar from "@/widgets/sidebar";
+import Sidebar from "@/widgets/sidebar/ui";
 import { PropsWithChildren } from "react";
 
 export default function MainLayout({ children }: PropsWithChildren) {
