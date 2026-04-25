@@ -1,10 +1,7 @@
 import CompleteView from "@/features/create-brand/ui/CompleteView";
+import { PageUrlProps } from "@/shared/types/page-props";
 
-interface PageProps {
-  searchParams: Promise<Record<string, string | undefined>>;
-}
-
-export default async function CompletePage({ searchParams }: PageProps) {
+export default async function CompletePage({ searchParams }: PageUrlProps) {
   const params = await searchParams;
 
   return (

@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import type { PlanConfig, Plan } from "../model/types";
+import { PlanConfig } from "../types/plan-config";
+import { Plan } from "../types/plan";
 
 interface Props {
   plan: PlanConfig;

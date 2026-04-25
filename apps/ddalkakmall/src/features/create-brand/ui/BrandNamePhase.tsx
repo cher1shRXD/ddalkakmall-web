@@ -33,7 +33,7 @@ const BrandNamePhase = ({ value, onChange, phone, onPhoneChange, onNext }: Props
         />
         <Input
           size="lg"
-          placeholder="연락처 (예: 01012345678)"
+          placeholder="대표 전화번호 (예: 01012345678)"
           value={phone}
           onChange={(e) => onPhoneChange(e.target.value)}
           onKeyDown={(e) => {
