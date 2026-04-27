@@ -1,5 +1,6 @@
 "use server";
 
+import { UserApi } from "@/entities/user/api";
 import { Plan } from "../types/plan";
 
 const PLAN_PRICES: Record<Exclude<Plan, "free">, number> = {
@@ -12,7 +13,9 @@ const PLAN_NAMES: Record<Exclude<Plan, "free">, string> = {
   plus: "딸깍몰 Plus 플랜",
 };
 
-export async function initiatePayment(plan: Exclude<Plan, "free">, brandName: string, phone: string) {
+export async function initiatePayment(plan: Exclude<Plan, "free">, brandName: string) {
+  const user = await UserApi.getMe();
+  if (!user.phone) throw new Error("전화번호를 등록해주세요.");
   const orderNo = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL!;
 
@@ -25,7 +28,7 @@ export async function initiatePayment(plan: Exclude<Plan, "free">, brandName: st
     linkkey: process.env.PAYAPP_LINK_KEY!,
     goodname: PLAN_NAMES[plan],
     goodprice: String(PLAN_PRICES[plan]),
-    recvphone: phone,
+    recvphone: user.phone,
     rebillCycleType: "Month",
     rebillCycleMonth: String(billingDay),
     rebillExpire: `${expireYear}-12-31`,

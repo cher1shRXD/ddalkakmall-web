@@ -6,13 +6,11 @@ import { ArrowRight } from "lucide-react";
 interface Props {
   value: string;
   onChange: (value: string) => void;
-  phone: string;
-  onPhoneChange: (value: string) => void;
   onNext: () => void;
 }
 
-const BrandNamePhase = ({ value, onChange, phone, onPhoneChange, onNext }: Props) => {
-  const canProceed = value.trim() && phone.trim();
+const BrandNamePhase = ({ value, onChange, onNext }: Props) => {
+  const canProceed = value.trim();
 
   return (
     <div className="w-full max-w-md lg:min-w-sm flex flex-col items-start gap-6">
@@ -26,19 +24,10 @@ const BrandNamePhase = ({ value, onChange, phone, onPhoneChange, onNext }: Props
       <div className="w-full flex flex-col gap-3 mt-2">
         <Input
           size="lg"
-          placeholder="예: 마이 브랜드"
+          placeholder="예: 딸깍몰"
           value={value}
           onChange={(e) => onChange(e.target.value)}
           autoFocus
-        />
-        <Input
-          size="lg"
-          placeholder="대표 전화번호 (예: 01012345678)"
-          value={phone}
-          onChange={(e) => onPhoneChange(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && canProceed) onNext();
-          }}
         />
       </div>
       <Button

@@ -1,7 +1,11 @@
+import { redirect } from "next/navigation";
 import { UserApi } from "../api";
 
 const UserIndicator = async () => {
   const user = await UserApi.getMe();
+  if (!user.phone || !user.address || !user.addressDetail || !user.zipcode) {
+    redirect("/setup-profile");
+  }
   
   return (
     <div className="flex-1 flex items-center gap-3">

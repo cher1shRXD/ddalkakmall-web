@@ -18,7 +18,6 @@ const fadeSlide = {
 const CreateBrandFlow = () => {
   const [phase, setPhase] = useState<Phase>("brand");
   const [brandName, setBrandName] = useState("");
-  const [phone, setPhone] = useState("");
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +33,7 @@ const CreateBrandFlow = () => {
     setLoading(true);
     setError(null);
     try {
-      const payUrl = await initiatePayment(selectedPlan, brandName, phone);
+      const payUrl = await initiatePayment(selectedPlan, brandName);
       window.location.href = payUrl;
     } catch (e) {
       setError(e instanceof Error ? e.message : "결제 요청에 실패했어요.");
@@ -50,8 +49,6 @@ const CreateBrandFlow = () => {
             <BrandNamePhase
               value={brandName}
               onChange={setBrandName}
-              phone={phone}
-              onPhoneChange={setPhone}
               onNext={() => setPhase("plan")}
             />
           </motion.div>
