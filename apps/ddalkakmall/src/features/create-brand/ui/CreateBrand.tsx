@@ -1,12 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BrandNamePhase from "./BrandNamePhase";
 import PlanSelectPhase from "./PlanSelectPhase";
-import { initiatePayment } from "../actions/initiate-payment";
-import { Phase } from "../types/phase";
-import { Plan } from "../types/plan";
+import { useCreateBrand } from "../hooks/useCreateBrand";
 
 const fadeSlide = {
   initial: { opacity: 0, y: 16 },
@@ -15,31 +12,19 @@ const fadeSlide = {
   transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
 };
 
-const CreateBrandFlow = () => {
-  const [phase, setPhase] = useState<Phase>("brand");
-  const [brandName, setBrandName] = useState("");
-  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleSubmit = async () => {
-    if (!selectedPlan) return;
-
-    if (selectedPlan === "free") {
-      // TODO: DB 연동 후 브랜드 생성 처리
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-    try {
-      const payUrl = await initiatePayment(selectedPlan, brandName);
-      window.location.href = payUrl;
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "결제 요청에 실패했어요.");
-      setLoading(false);
-    }
-  };
+const CreateBrand = () => {
+  const {
+    phase,
+    brandName,
+    selectedPlan,
+    loading,
+    error,
+    setBrandName,
+    setSelectedPlan,
+    goNext,
+    goPrev,
+    handleSubmit,
+  } = useCreateBrand();
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center p-10">
@@ -49,7 +34,7 @@ const CreateBrandFlow = () => {
             <BrandNamePhase
               value={brandName}
               onChange={setBrandName}
-              onNext={() => setPhase("plan")}
+              onNext={goNext}
             />
           </motion.div>
         ) : (
@@ -58,7 +43,7 @@ const CreateBrandFlow = () => {
               brandName={brandName}
               selected={selectedPlan}
               onSelect={setSelectedPlan}
-              onPrev={() => setPhase("brand")}
+              onPrev={goPrev}
               onSubmit={handleSubmit}
               loading={loading}
               error={error}
@@ -70,4 +55,4 @@ const CreateBrandFlow = () => {
   );
 };
 
-export default CreateBrandFlow;
+export default CreateBrand;

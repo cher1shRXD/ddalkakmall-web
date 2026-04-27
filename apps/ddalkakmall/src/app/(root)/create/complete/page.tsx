@@ -1,13 +1,14 @@
-import CompleteView from "@/features/create-brand/ui/CompleteView";
+import Complete from "@/features/create-brand/ui/Complete";
 import { PageUrlProps } from "@/shared/types/page-props";
 
 export default async function CompletePage({ searchParams }: PageUrlProps) {
   const params = await searchParams;
 
   return (
-    <CompleteView
+    <Complete
       payState={params.pay_state}
       brandName={params.var2}
+      brandId={params.var3}
     />
   );
 }

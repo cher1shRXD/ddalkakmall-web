@@ -13,7 +13,7 @@ const PLAN_NAMES: Record<Exclude<Plan, "free">, string> = {
   plus: "딸깍몰 Plus 플랜",
 };
 
-export async function initiatePayment(plan: Exclude<Plan, "free">, brandName: string) {
+export async function initiatePayment(plan: Exclude<Plan, "free">, brandId: string, brandName: string) {
   const user = await UserApi.getMe();
   if (!user.phone) throw new Error("전화번호를 등록해주세요.");
   const orderNo = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
@@ -34,6 +34,7 @@ export async function initiatePayment(plan: Exclude<Plan, "free">, brandName: st
     rebillExpire: `${expireYear}-12-31`,
     var1: orderNo,
     var2: brandName,
+    var3: brandId,
     feedbackurl: `${baseUrl}/api/payment/feedback`,
     returnurl: `${baseUrl}/api/payment/complete`,
     cancelurl: `${baseUrl}/create`,

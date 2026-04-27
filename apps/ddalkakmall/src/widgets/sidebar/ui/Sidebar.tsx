@@ -1,9 +1,9 @@
 import { Plus } from "lucide-react";
 import MenuItem from "./MenuItem";
-import { Divider } from "@ddalkakmall/ui";
+import { Divider, Spinner } from "@ddalkakmall/ui";
 import { Heading } from "@ddalkakmall/ui";
-import { Spinner } from "@ddalkakmall/ui";
 import UserIndicator from "@/entities/user/ui/UserIndicator";
+import BrandList from "@/entities/brand/ui/BrandList";
 import LogoutButton from "@/features/logout/ui/LogoutButton";
 import FetchBoundary from "@/shared/ui/FetchBoundary";
 import LoginButton from "@/features/login/ui/LoginButton";
@@ -23,11 +23,14 @@ const Sidebar = () => {
       </div>
       <Divider label="My Brands" />
       <div className="w-full flex-1 overflow-y-auto space-y-1">
-        <p className="text-foreground-sub text-sm px-1">
-          생성된 브랜드가 없습니다.
-        </p>
+        <FetchBoundary
+          onPending={<Spinner size="sm" />}
+          onError={<p className="text-foreground-sub text-sm px-1">브랜드를 불러올 수 없어요.</p>}
+        >
+          <BrandList />
+        </FetchBoundary>
       </div>
-      <FetchBoundary onPending={<Spinner size="lg" />} onError={<LoginButton />}>
+      <FetchBoundary onPending={<LoginButton />} onError={<LoginButton />}>
         <div className="w-full flex items-center p-2 rounded-xl border border-border bg-surface-2">
           <UserIndicator />
           <LogoutButton />

@@ -8,9 +8,10 @@ import { Link } from "@cher1shrxd/loading";
 interface Props {
   payState?: string;
   brandName?: string;
+  brandId?: string;
 }
 
-const CompleteView = ({ payState, brandName }: Props) => {
+const Complete = ({ payState, brandName, brandId }: Props) => {
   const isSuccess = payState === undefined || payState === "4";
 
   return (
@@ -32,7 +33,7 @@ const CompleteView = ({ payState, brandName }: Props) => {
                 <span className="text-foreground font-semibold">{brandName}</span> 브랜드가 곧 준비될 거예요.
               </p>
             </div>
-            <Link href="/" className="w-full">
+            <Link href={brandId ? `/brands/${brandId}` : "/"} className="w-full">
               <Button size="lg" fullWidth rightIcon={<ArrowRight size={16} />}>
                 시작하기
               </Button>
@@ -61,4 +62,4 @@ const CompleteView = ({ payState, brandName }: Props) => {
   );
 };
 
-export default CompleteView;
+export default Complete;

@@ -1,5 +1,5 @@
-import CreateBrandFlow from "@/features/create-brand/ui";
+import CreateBrand from "@/features/create-brand/ui/CreateBrand";
 
 export default async function CreatePage() {
-  return <CreateBrandFlow />;
+  return <CreateBrand />;
 }
