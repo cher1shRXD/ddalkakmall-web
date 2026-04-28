@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { UserApi } from "../api";
+import Image from "next/image";
 
 const UserIndicator = async () => {
   const user = await UserApi.getMe();
@@ -11,7 +12,7 @@ const UserIndicator = async () => {
     <div className="flex-1 flex items-center gap-3">
       <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0 overflow-hidden">
         {user.avatar ? (
-          <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" />
+          <Image src={user.avatar} alt={user.name} className="w-full h-full object-cover" unoptimized width={36} height={36} />
         ) : (
           <span className="text-sm font-bold text-primary">{user.name[0]}</span>
         )}
