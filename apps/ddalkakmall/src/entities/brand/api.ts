@@ -1,5 +1,5 @@
 import { apiClient } from "@/shared/libs/api-client";
-import { Brand } from "./types";
+import { Brand, BrandDetail } from "./types";
 import { CreateBrandRequest } from "./dto";
 
 export const BrandApi = {
@@ -8,7 +8,7 @@ export const BrandApi = {
   },
 
   async getById(id: string) {
-    return await apiClient.get<Brand>(`/brands/${id}`).withCookie();
+    return await apiClient.get<BrandDetail>(`/brands/${id}`).withCookie();
   },
 
   async create(payload: CreateBrandRequest) {

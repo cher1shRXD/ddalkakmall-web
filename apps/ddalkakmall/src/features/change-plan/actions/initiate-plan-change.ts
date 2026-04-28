@@ -1,11 +1,11 @@
 "use server";
 
 import { UserApi } from "@/entities/user/api";
-import { Plan } from "../types/plan";
+import { Plan } from "@/features/create-brand/types/plan";
 
 const PLAN_PRICES: Record<Exclude<Plan, "free">, number> = {
-  basic: 1000,
-  plus: 1000,
+  basic: 29000,
+  plus: 79000,
 };
 
 const PLAN_NAMES: Record<Exclude<Plan, "free">, string> = {
@@ -13,12 +13,16 @@ const PLAN_NAMES: Record<Exclude<Plan, "free">, string> = {
   plus: "딸깍몰 Plus 플랜",
 };
 
-export async function initiatePayment(plan: Exclude<Plan, "free">, brandName: string) {
+export async function initiatePlanChange(
+  plan: Exclude<Plan, "free">,
+  brandId: string,
+  brandName: string,
+) {
   const user = await UserApi.getMe();
   if (!user.phone) throw new Error("전화번호를 등록해주세요.");
+
   const orderNo = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL!;
-
   const billingDay = new Date().getDate();
   const expireYear = new Date().getFullYear() + 10;
 
@@ -34,9 +38,10 @@ export async function initiatePayment(plan: Exclude<Plan, "free">, brandName: st
     rebillExpire: `${expireYear}-12-31`,
     var1: orderNo,
     var2: brandName,
+    var3: brandId,
     feedbackurl: `${baseUrl}/api/payment/feedback`,
-    returnurl: `${baseUrl}/api/payment/complete`,
-    cancelurl: `${baseUrl}/create`,
+    returnurl: `${baseUrl}/api/payment/plan-change`,
+    cancelurl: `${baseUrl}/brands/${brandId}`,
   });
 
   const res = await fetch("https://api.payapp.kr/oapi/apiLoad.html", {
@@ -53,4 +58,9 @@ export async function initiatePayment(plan: Exclude<Plan, "free">, brandName: st
   }
 
   return result.payurl as string;
+}
+
+export async function cancelSubscription(brandId: string) {
+  const { apiClient } = await import("@/shared/libs/api-client");
+  await apiClient.delete(`/brands/${brandId}/subscription`).withCookie();
 }

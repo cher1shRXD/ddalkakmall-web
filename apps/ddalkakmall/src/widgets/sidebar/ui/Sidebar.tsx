@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
 import MenuItem from "./MenuItem";
-import { Divider, Spinner } from "@ddalkakmall/ui";
+import { Divider } from "@ddalkakmall/ui";
 import { Heading } from "@ddalkakmall/ui";
 import UserIndicator from "@/entities/user/ui/UserIndicator";
 import BrandList from "@/entities/brand/ui/BrandList";
@@ -24,7 +24,7 @@ const Sidebar = () => {
       <Divider label="My Brands" />
       <div className="w-full flex-1 overflow-y-auto space-y-1">
         <FetchBoundary
-          onPending={<Spinner size="sm" />}
+          onPending={<BrandList.Skeleton />}
           onError={<p className="text-foreground-sub text-sm px-1">브랜드를 불러올 수 없어요.</p>}
         >
           <BrandList />

@@ -19,14 +19,13 @@ export const useCreateBrand = () => {
     setLoading(true);
     setError(null);
     try {
-      const brand = await createBrand(brandName);
-
       if (selectedPlan === "free") {
+        const brand = await createBrand(brandName);
         window.location.href = `/brands/${brand.id}`;
         return;
       }
 
-      const payUrl = await initiatePayment(selectedPlan, brand.id, brandName);
+      const payUrl = await initiatePayment(selectedPlan, brandName);
       window.location.href = payUrl;
     } catch (e) {
       setError(e instanceof Error ? e.message : "브랜드 생성에 실패했어요.");
